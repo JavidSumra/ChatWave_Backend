@@ -1,5 +1,9 @@
 const mongoose = require("mongoose");
-const URL = "mongodb://127.0.0.1:27017/ChatWave_dev";
+const ENV = process.env.NODE_ENV || "development";
+const URL =
+  ENV != "development" ? process.env.MONGO_URL : "mongodb://localhost:27017";
+
+console.log(URL);
 
 const connectDB = () => {
   try {
