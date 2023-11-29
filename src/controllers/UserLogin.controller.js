@@ -25,10 +25,10 @@ const LoginUser = async (req, res) => {
           token: generateAccessToken(isUserExist.email),
         });
       } else {
-        res.status(200).json({ error: "Wrong Email or Password" });
+        res.status(402).json({ error: "Wrong Email or Password" });
       }
     } else {
-      res.status(200).json({ error: "User Not Exist" });
+      res.status(402).json({ error: "User Not Exist" });
     }
   } catch (error) {
     console.log("Encounter An Error while Login", error);
