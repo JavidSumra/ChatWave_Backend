@@ -13,11 +13,12 @@ const validateToken = (req, res, next) => {
 
   if (token == null) return res.sendStatus(401);
 
-  jwt.verify(token, process.env.SECRET_TOKEN, (err, decoded) => {
+  jwt.verify(token, process.env.SECRET_TOKEN, (err, decoded, user) => {
     if (err) return res.sendStatus(403);
     req.tokenData = decoded;
     next();
   });
+  console.log(req.tokenData);
 };
 
 module.exports = { generateAccessToken, validateToken };
