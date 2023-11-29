@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://chatwavejavid.netlify.app"],
+    origin: ["http://localhost:5173", "https://chatwave-tulv.onrender.com"],
     credentials: true, // Cookies Can Sent With Request
   })
 );
