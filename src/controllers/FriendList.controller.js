@@ -4,10 +4,16 @@ const User = require("../models/User")(mongoose);
 // ! Test Controller
 const Friendlist = async (req, res) => {
   try {
-    const userData = await User.findOne({ email: req.tokenData.username });
+    let friendList = await User.find({});
 
-    res.send(userData);
-  } catch (error) {}
+    friendList = friendList.filter(
+      (friend) => friend.email != req.tokenData.username
+    );
+
+    res.status(200).json({ Friends: friendList });
+  } catch (error) {
+    console.log(`Error While Fetching Friend List`, error);
+  }
 };
 
 module.exports = Friendlist;

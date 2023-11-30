@@ -18,7 +18,7 @@ const validateToken = (req, res, next) => {
     req.tokenData = decoded;
     next();
   });
-  console.log(req.tokenData);
+  // console.log(req.tokenData);
 };
 
 module.exports = { generateAccessToken, validateToken };

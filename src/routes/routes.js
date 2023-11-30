@@ -13,6 +13,6 @@ routes.post("/Users/Signup", CreateUser);
 
 routes.post("/Users/Signin", LoginUser);
 
-routes.get("/chat", validateToken, Friendlist);
+routes.get("/chat/friendList", validateToken, Friendlist);
 
 module.exports = routes;
