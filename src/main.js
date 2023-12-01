@@ -15,7 +15,7 @@ const URL =
     : "http://localhost:5173";
 
 const server = http.createServer(http);
-const SocketPort = process.env.PORT | 3001;
+const SocketPort = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(bodyParser.json());
