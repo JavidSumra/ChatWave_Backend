@@ -75,7 +75,7 @@ io.on("connect", (socket) => {
 });
 
 server.listen(SocketPort, () => {
-  console.log("Server Started");
+  console.log("Server Started on", SocketPort);
 });
 
 app.use(routes); //Routes Definition
