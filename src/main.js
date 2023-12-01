@@ -35,7 +35,7 @@ app.use(
 
 const io = new Server(server, {
   cors: {
-    origin: [URL, "http://localhost:5173"],
+    origin: [URL, "http://localhost:5173", "https://chatwavejavid.netlify.app"],
     methods: ["GET", "POST"],
   },
 });
