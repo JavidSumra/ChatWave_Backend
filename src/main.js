@@ -15,7 +15,7 @@ const URL =
     : "http://localhost:5173";
 
 const server = http.createServer(http);
-// !Change it
+const SocketPort = process.env.PORT | 3001;
 
 app.use(express.json());
 app.use(bodyParser.json());
@@ -42,20 +42,39 @@ const io = new Server(server, {
 
 connectDB();
 
-io.on("connect", (socket) => {
-  console.log(`Hello ${socket.id}`);
+let users = [];
 
-  socket.on("send_msg", (data) => {
-    console.log(data);
+const addUser = (userId, socketId) => {
+  !users.some((user) => user.userId === userId) &&
+    users.push({ userId, socketId });
+};
+
+const removeUser = (socketId) => {
+  users = users.filter((user) => user.socketId !== socketId);
+};
+
+const getUser = (userId) => {
+  return users.find((user) => user.userId === userId);
+};
+
+io.on("connect", (socket) => {
+  socket.on("send_msg", ({ senderId, receiverId, msg }) => {
+    const user = getUser(receiverId);
+    io.to(user.socketId).emit("receive_msg", { senderId, msg });
   });
 
-  socket.on("join_room", (id) => {
-    console.log("Joined to ", id);
-    socket.join(id);
+  socket.on("addUser", (data) => {
+    data && addUser(data, socket.id);
+    socket.emit("getUsers", users);
+  });
+
+  socket.on("disconnect", () => {
+    console.log(`User Removed With ${socket.id}`);
+    removeUser(socket.id);
   });
 });
 
-server.listen(3001, () => {
+server.listen(SocketPort, () => {
   console.log("Server Started");
 });
 

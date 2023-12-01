@@ -35,7 +35,7 @@ const CreateUser = async (req, res) => {
         userRole,
       });
       // Sending Mail
-      mail(email, subject, generateMessage(firstName, lastName));
+      //Todo : Uncomment mail(email, subject, generateMessage(firstName, lastName));
 
       // Sending User Data and Corresponding token for User
       res
