@@ -11,7 +11,6 @@ const URL =
     : "http://localhost:5173";
 
 const io = require("socket.io")(server, {
-  pingTimeout: 60000,
   cors: {
     origin: [
       URL,
