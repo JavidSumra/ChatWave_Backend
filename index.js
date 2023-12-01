@@ -17,6 +17,7 @@ const io = require("socket.io")(server, {
       URL,
       "http://localhost:3007",
       "https://chatwave-tulv.onrender.com",
+      "https://chatwavejavid.netlify.app",
     ],
     methods: ["GET", "POST"],
   },
