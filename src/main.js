@@ -21,6 +21,7 @@ app.use(
       "http://localhost:5173",
       "http://192.168.103.45:5173",
       "https://chatwavejavid.netlify.app",
+      "https://chatwave-tulv.onrender.com",
     ],
     credentials: true, // Cookies Can Sent With Request
   })
