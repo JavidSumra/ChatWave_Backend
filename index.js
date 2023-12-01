@@ -13,7 +13,11 @@ const URL =
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: [URL, "http://localhost:3007", "https://chatwavejavid.netlify.app"],
+    origin: [
+      URL,
+      "http://localhost:3007",
+      "https://chatwave-tulv.onrender.com",
+    ],
     methods: ["GET", "POST"],
   },
 });
