@@ -11,7 +11,7 @@ const { Server } = require("socket.io");
 
 const URL =
   process.env.NODE_ENV === "production"
-    ? "https://chatwave-tulv.onrender.com"
+    ? "https://chatwavejavid.netlify.app"
     : "http://localhost:5173";
 
 const server = http.createServer(http);
