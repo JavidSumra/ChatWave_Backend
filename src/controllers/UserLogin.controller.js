@@ -32,6 +32,7 @@ const LoginUser = async (req, res) => {
     }
   } catch (error) {
     console.log("Encounter An Error while Login", error);
+    res.status(402).json({ error: "Failed To Fetch API Sorry" });
   }
 };
 

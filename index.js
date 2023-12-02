@@ -40,7 +40,7 @@ const getUser = (userId) => {
 io.on("connect", (socket) => {
   socket.on("send_msg", ({ senderId, receiverId, msg }) => {
     const user = getUser(receiverId);
-    io.to(user.socketId).emit("receive_msg", { senderId, msg });
+    io.to(user.socketId).emit("receive_msg", { senderId, receiverId, msg });
   });
 
   socket.on("addUser", (data) => {

@@ -44,6 +44,7 @@ const CreateUser = async (req, res) => {
     }
   } catch (error) {
     console.log("Error While Creating User", error);
+    res.status(402).json({ error: "Failed To Fetch API Sorry" });
   }
 };
 

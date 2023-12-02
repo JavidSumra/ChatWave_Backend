@@ -13,6 +13,7 @@ const Friendlist = async (req, res) => {
     res.status(200).json({ Friends: friendList });
   } catch (error) {
     console.log(`Error While Fetching Friend List`, error);
+    res.status(402).json({ error: "Failed To Fetch API Sorry" });
   }
 };
 
