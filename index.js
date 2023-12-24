@@ -48,8 +48,16 @@ io.on("connect", (socket) => {
     socket.emit("getUsers", users);
   });
 
+  socket.on("friendList", async (data) => {
+    const filteredFriendList = await data.filter((friend) =>
+      users.find((onlineUserList) => friend._id === onlineUserList.userId)
+    );
+    socket.emit("getUsers", filteredFriendList);
+  });
+
   socket.on("disconnect", () => {
     console.log(`User Removed With ${socket.id}`);
     removeUser(socket.id);
+    // socket.emit("User_List", users);
   });
 });
