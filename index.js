@@ -49,9 +49,12 @@ io.on("connect", (socket) => {
   });
 
   socket.on("friendList", async (data) => {
-    const filteredFriendList = await data.filter((friend) =>
-      users.find((onlineUserList) => friend._id === onlineUserList.userId)
-    );
+    const filteredFriendList =
+      data.length > 0
+        ? await data.filter((friend) =>
+            users.find((onlineUserList) => friend._id === onlineUserList.userId)
+          )
+        : [];
     socket.emit("getUsers", filteredFriendList);
   });
 
