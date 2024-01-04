@@ -38,6 +38,7 @@ const getUser = (userId) => {
 };
 
 io.on("connect", (socket) => {
+  console.log("User is Connected with ID", socket.id);
   socket.on("send_msg", ({ senderId, receiverId, msg }) => {
     const user = getUser(receiverId);
     io.to(user.socketId).emit("receive_msg", { senderId, receiverId, msg });
@@ -50,13 +51,18 @@ io.on("connect", (socket) => {
 
   socket.on("friendList", async (data) => {
     const filteredFriendList =
-      data.length > 0
-        ? await data.filter((friend) =>
+      data?.length > 0
+        ? await data?.filter((friend) =>
             users.find((onlineUserList) => friend._id === onlineUserList.userId)
           )
         : [];
     socket.emit("getUsers", filteredFriendList);
   });
+
+  // ! For Typing Feature
+  // socket.on("typing", (id) => {
+  //   io.emit("isTyping", id);
+  // });
 
   socket.on("disconnect", () => {
     console.log(`User Removed With ${socket.id}`);

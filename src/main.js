@@ -41,7 +41,7 @@ app.use((req, res, next) => {
   next();
 });
 
-connectDB();
+if (process.env.NODE_ENV !== "test") connectDB();
 
 // server.listen(SocketPort, () => {
 //   console.log("Server Started on", SocketPort);
